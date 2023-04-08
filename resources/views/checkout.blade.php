@@ -34,7 +34,7 @@
                             @csrf
                             <div class="mb-4">
                                 <label for="exampleInputEmail1" class="form-label">Full Name</label>
-                                <input name="email" type="text" class="form-control">
+                                <input name="name" type="text" class="form-control">
                             </div>
                             <div class="mb-4">
                                 <label for="exampleInputEmail1" class="form-label">Email Address</label>
