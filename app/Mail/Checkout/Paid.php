@@ -12,13 +12,14 @@ use Illuminate\Queue\SerializesModels;
 class Paid extends Mailable
 {
     use Queueable, SerializesModels;
+    private $checkout;
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($checkout)
     {
-        //
+        $this->checkout = $checkout;
     }
 
     /**
@@ -38,6 +39,10 @@ class Paid extends Mailable
     {
         return new Content(
             markdown: 'emails.checkout.paid',
+            with: [
+                'checkout' => $this->checkout,
+                'url' => route('user.dashboard')
+            ],
         );
     }
 
