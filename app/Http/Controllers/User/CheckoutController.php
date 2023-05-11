@@ -121,10 +121,11 @@ class CheckoutController extends Controller
     public function getSnapRedirect(Checkout $checkout)
     {
         $orderId = $checkout->id.'-'.Str::random(5);
+        $price = $checkout->Camp->price * 1000;
         $checkout->midtrans_booking_code = $orderId;
         $transaction_details = [
             'order_id' => $orderId,
-            'gross_amount' => $checkout->Camp->price * 1000
+            'gross_amount' => $price
         ];
 
         $item_details[] = [
@@ -165,7 +166,7 @@ class CheckoutController extends Controller
             $checkout->midtrans_url = $paymentUrl;
             $checkout->save();
 
-            return paymentUrl;
+            return $paymentUrl;
         } catch (Exception $e) {
             return false;
         }

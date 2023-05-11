@@ -29,12 +29,8 @@ Route::get('sign-in-google', [UserController::class, 'google'])->name('user.logi
 Route::get('auth/google/callback', [UserController::class, 'handleProviderCallback'])->name('user.google.callback');
 
 // Midtrans Routes
-Route::get('payment/success', [UserController::class, 'midtransCallback']);
-Route::post('payment/success', [UserController::class, 'midtransCallback']);
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('payment/success', [CheckoutController::class, 'midtransCallback']);
+Route::post('payment/success', [CheckoutController::class, 'midtransCallback']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -48,7 +44,6 @@ Route::middleware('auth')->group(function () {
 
     // Dashboard
     Route::get('dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
-    //Route::get('dashboard/checkout/invoice/{checkout}', [CheckoutController::class, 'invoice'])->name('user.checkout.invoice');
 
     // User Dashboard
     Route::prefix('user/dashboard')->namespace('User')->name('user.')->middleware('ensureUserRole:user')->group(function(){
