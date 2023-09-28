@@ -34,17 +34,17 @@
                                         {{$discount->code}}
                                     </span>
                                 </td>
-                                <td>{{$discount->description}}k</td>
+                                <td>{{$discount->description}}</td>
                                 <td>{{$discount->percentage}}%</td>
                                 <td>
                                     <a href="{{route('admin.discount.edit', $discount->id)}}" class="btn btn-warning">Edit</a>
                                 </td>
                                 <td>
-                                    <a href="{{route('admin.discount.destroy', $discount->id)}}" method="post">
+                                    <form action="{{route('admin.discount.destroy', $discount->id)}}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button class="btn btn-danger">Delete</button>
-                                    </a>
+                                    </form>
                                 </td>
                             </tr>
                             @empty
